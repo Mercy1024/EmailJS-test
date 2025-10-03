@@ -1,0 +1,80 @@
+<!-- Contact Form -->
+<form id="contact-form">
+  <!-- Your Name -->
+  <label for="from_name">Your Name</label>
+  <input
+    type="text"
+    id="from_name"
+    name="from_name"
+    placeholder="Name"
+    required
+  />
+
+  <!-- Company Name -->
+  <label for="company">Company Name</label>
+  <input type="text" id="company" name="company" placeholder="Company" />
+
+  <!-- Email Address -->
+  <label for="email">Email Address</label>
+  <input
+    type="email"
+    id="email"
+    name="email"
+    placeholder="example@mail.com"
+    required
+  />
+
+  <!-- Phone Number -->
+  <label for="phone">Phone Number</label>
+  <input type="text" id="phone" name="phone" placeholder="+1 (234) 456-7899" />
+
+  <!-- Preferred Contact Method -->
+  <label for="contact_method">Preferred Contact Method</label>
+  <select id="contact_method" name="contact_method">
+    <option value="Call">Call</option>
+    <option value="Email">Email</option>
+    <option value="WhatsApp">WhatsApp</option>
+  </select>
+
+  <!-- Message -->
+  <label for="message">How can we help you?</label>
+  <textarea
+    id="message"
+    name="message"
+    placeholder="Your message"
+    required
+  ></textarea>
+
+  <!-- Submit -->
+  <button type="submit">Send</button>
+</form>
+
+<!-- EmailJS Script -->
+<script
+  type="text/javascript"
+  src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"
+></script>
+<script type="text/javascript">
+  (function () {
+    // ✅ Replace with your EmailJS public key
+    emailjs.init("g2PMv1JlYOT9esRdx");
+  })();
+
+  // Form submission
+  document
+    .getElementById("contact-form")
+    .addEventListener("submit", function (event) {
+      event.preventDefault();
+
+      // ✅ Replace with your actual SERVICE ID and TEMPLATE ID
+      emailjs.sendForm("service_2xda8fm", "template_bkj91ol", this).then(
+        function () {
+          alert("✅ Message sent successfully!");
+          document.getElementById("contact-form").reset(); // clear form
+        },
+        function (error) {
+          alert("❌ Failed to send message: " + JSON.stringify(error));
+        }
+      );
+    });
+</script>
